@@ -1,0 +1,159 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": [],
+      "authorship_tag": "ABX9TyNNsLvUyZwV2wqiQJzfjPkt",
+      "include_colab_link": true
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {
+        "id": "view-in-github",
+        "colab_type": "text"
+      },
+      "source": [
+        "<a href=\"https://colab.research.google.com/github/MEHFUZ22/Pyspark/blob/main/Pyspark\" target=\"_parent\"><img src=\"https://colab.research.google.com/assets/colab-badge.svg\" alt=\"Open In Colab\"/></a>"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "execution_count": 1,
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "XxAyxbDO0e4H",
+        "outputId": "1690774c-6c73-405b-9785-d2ea82a8de08"
+      },
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Collecting pyspark\n",
+            "  Downloading pyspark-3.4.1.tar.gz (310.8 MB)\n",
+            "\u001b[2K     \u001b[90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\u001b[0m \u001b[32m310.8/310.8 MB\u001b[0m \u001b[31m4.2 MB/s\u001b[0m eta \u001b[36m0:00:00\u001b[0m\n",
+            "\u001b[?25h  Preparing metadata (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "Requirement already satisfied: py4j==0.10.9.7 in /usr/local/lib/python3.10/dist-packages (from pyspark) (0.10.9.7)\n",
+            "Building wheels for collected packages: pyspark\n",
+            "  Building wheel for pyspark (setup.py) ... \u001b[?25l\u001b[?25hdone\n",
+            "  Created wheel for pyspark: filename=pyspark-3.4.1-py2.py3-none-any.whl size=311285387 sha256=85de139647d05516e6b738f6c0728ecc2e50de1742330457d56e370b0e4dd4b4\n",
+            "  Stored in directory: /root/.cache/pip/wheels/0d/77/a3/ff2f74cc9ab41f8f594dabf0579c2a7c6de920d584206e0834\n",
+            "Successfully built pyspark\n",
+            "Installing collected packages: pyspark\n",
+            "Successfully installed pyspark-3.4.1\n"
+          ]
+        }
+      ],
+      "source": [
+        "pip install pyspark\n"
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "from pyspark.sql import SparkSession\n",
+        "spark=SparkSession.builder.appName('').getOrCreate()"
+      ],
+      "metadata": {
+        "id": "W_JERuXV0kr1"
+      },
+      "execution_count": 2,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "\n",
+        "from pyspark.sql.types import *\n",
+        "\n",
+        "data=[(1,'Mehfuz'),(2,'Rahman')]\n",
+        "schema=StructType([\n",
+        "    StructField(name='id',dataType=IntegerType()),\n",
+        "    StructField(name='name',dataType=StringType())\n",
+        "    ])\n",
+        "df=spark.createDataFrame(data=data,schema=schema)"
+      ],
+      "metadata": {
+        "id": "FDEheyCM1IPf"
+      },
+      "execution_count": 16,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df.show()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "EX2hlDFx1ZuB",
+        "outputId": "dd2d45d8-9a29-4801-80a0-e69a81f1abbd"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "+---+------+\n",
+            "| id|  name|\n",
+            "+---+------+\n",
+            "|  1|Mehfuz|\n",
+            "|  2|Rahman|\n",
+            "+---+------+\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "df.printSchema()"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "Yl1miJ-F1_Tj",
+        "outputId": "145c3501-d08c-4bc8-b7d2-3e117ca4fbe3"
+      },
+      "execution_count": 18,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "root\n",
+            " |-- id: integer (nullable = true)\n",
+            " |-- name: string (nullable = true)\n",
+            "\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [],
+      "metadata": {
+        "id": "u8FD4cJv2D3A"
+      },
+      "execution_count": null,
+      "outputs": []
+    }
+  ]
+}
